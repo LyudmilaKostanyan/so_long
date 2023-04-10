@@ -72,22 +72,21 @@ void	ft_init(t_vars *mlx, char **argv)
 	len2 = ft_strlen(mlx->split[0]);
 	mlx->mlx = mlx_init();
 	ft_images(mlx, len1, len2);
+	err_mes("Textures not found", !mlx->win || !mlx->mlx
+		|| !mlx->img_0 || !mlx->img_1 || !mlx->img_p
+		|| !mlx->img_pl || !mlx->img_c || !mlx->img_e
+		|| !mlx->img_el || !mlx->img_er || !mlx->img_r);
 }
 
 int	main(int argc, char **argv)
 {
 	t_vars	mlx;
 
-	if (argc != 2)
-	{
-		perror("Error\n");
-		return (1);
-	}
-	if (ft_strncmp(ft_strrchr(argv[1], '.'), ".ber", 4))
-	{
-		perror("Error\n");
-		return (1);
-	}
+	err_mes("Few argumets", argc != 2);
+	err_mes("Wrong file type",
+		ft_strncmp(ft_strrchr(argv[1], '.'), ".ber", 4)
+		|| ft_strncmp(ft_strrchr(argv[1], '.'),
+			".ber", ft_strlen(ft_strrchr(argv[1], '.'))));
 	ft_init(&mlx, argv);
 	mlx.i = -1;
 	mlx.y = 0;

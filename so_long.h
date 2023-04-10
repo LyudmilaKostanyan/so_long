@@ -78,5 +78,6 @@ void	split_free(char **split);
 int		ft_close(void *i);
 void	coins(t_vars *mlx);
 void	map2(char **split, t_vars *mlx);
+void	err_mes(char *str, int condition);
 
 #endif

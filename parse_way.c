@@ -97,16 +97,9 @@ void	parsing_way(char **split, int c)
 	{
 		j = -1;
 		while (split[i][++j])
-		{
 			if (split[i][j] == 'P')
-			{
-				if (!way_check(s, i, j) || coin_way_check(s2, i, j, &c) != 100)
-				{
-					perror("Error\n");
-					exit(1);
-				}
-			}
-		}
+				err_mes("There isn't a valid path",
+					!way_check(s, i, j) || coin_way_check(s2, i, j, &c) != 100);
 	}
 	split_free(s);
 	split_free(s2);

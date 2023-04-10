@@ -36,17 +36,20 @@ char	*ft_open(char *file, int count)
 {
 	int		fd;
 	char	*s;
+	char	*str;
+	int		i;
 
 	s = malloc(count + 1);
-	if (s == NULL)
-	{
-		perror("Error\n");
-		exit(1);
-	}
+	err_mes("Malloc error", s == NULL);
 	fd = open(file, O_RDONLY);
 	read(fd, s, count);
 	s[count] = 0;
 	close(fd);
+	str = ft_strtrim(s, "\n");
+	i = 0;
+	while (str[++i])
+		err_mes("Incorrect map", str[i] == '\n' && str[i - 1] == '\n');
+	free(str);
 	return (s);
 }
 
@@ -57,11 +60,7 @@ char	**parse(char *file, int count, int *c)
 
 	s = ft_open(file, count);
 	split = ft_split(s, '\n');
-	if (split == NULL)
-	{
-		perror("Error\n");
-		exit(1);
-	}
+	err_mes("Malloc error", split == NULL);
 	parsing_rectangular(split);
 	parsing_borders(split);
 	*c = parsing_pce(s);
@@ -80,18 +79,10 @@ char	**area(char *file, int *c)
 
 	count = 0;
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error\n");
-		exit(1);
-	}
+	err_mes("Wrong fd", fd < 0);
 	while (read(fd, &a, 1) > 0)
 		count++;
-	if (count == 0)
-	{
-		perror("Error\n");
-		exit(1);
-	}
+	err_mes("Read error", count == 0);
 	close(fd);
 	split = parse(file, count, c);
 	return (split);

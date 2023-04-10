@@ -12,6 +12,15 @@
 
 #include "so_long.h"
 
+void	err_mes(char *str, int condition)
+{
+	if (condition)
+	{
+		perror(str);
+		exit(1);
+	}
+}
+
 void	parsing_rectangular(char **split)
 {
 	int		i;
@@ -20,28 +29,7 @@ void	parsing_rectangular(char **split)
 	i = 0;
 	len = ft_strlen(split[0]);
 	while (split[++i])
-	{
-		if (ft_strlen(split[i]) != len)
-		{
-			perror("Error\n");
-			exit(1);
-		}
-	}
-}
-
-void	norm_parsing_borders(char **split, int i)
-{
-	int	j;
-
-	j = -1;
-	while (split[i][++j])
-	{
-		if (split[i][j] != 49)
-		{
-			perror("Error\n");
-			exit(1);
-		}
-	}
+		err_mes("Map isn't rectangular", ft_strlen(split[i]) != len);
 }
 
 void	parsing_borders(char **split)
@@ -55,18 +43,13 @@ void	parsing_borders(char **split)
 	{
 		j = -1;
 		if (split[i + 1] == NULL || i == 0)
-			norm_parsing_borders(split, i);
+			while (split[i][++j])
+				err_mes("No walls", split[i][j] != 49);
 		else
 		{
 			len = ft_strlen(split[i]) - 1;
 			while (split[i][++j])
-			{
-				if (split[i][0] != 49 || split[i][len] != 49)
-				{
-					perror("Error\n");
-					exit(1);
-				}
-			}
+				err_mes("No walls", split[i][0] != 49 || split[i][len] != 49);
 		}
 	}
 }
@@ -81,15 +64,10 @@ void	parsing_area(char **split)
 	{
 		j = -1;
 		while (split[i][++j])
-		{
-			if (split[i][j] != '0' && split[i][j] != '1' &&
-				split[i][j] != 'E' && split[i][j] != 'P' &&
-					split[i][j] != 'C' && split[i][j] != 'R')
-			{
-				perror("Error\n");
-				exit(1);
-			}
-		}
+			err_mes("Other symbols in map", split[i][j] != '0'
+				&& split[i][j] != '1' && split[i][j] != 'E'
+				&& split[i][j] != 'P' && split[i][j] != 'C'
+				&& split[i][j] != 'R');
 	}
 }
 
@@ -111,10 +89,7 @@ int	parsing_pce(const char *s)
 		else if (s[i] == 'C')
 			a.c_count++;
 	}
-	if (a.c_count == 0 || a.e_count != 1 || a.p_count != 1)
-	{
-		perror("Error\n");
-		exit(1);
-	}
+	err_mes("Few symbols in the map",
+		a.c_count == 0 || a.e_count != 1 || a.p_count != 1);
 	return (a.c_count);
 }
