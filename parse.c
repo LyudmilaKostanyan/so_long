@@ -12,9 +12,22 @@
 
 #include "so_long.h"
 
-int	ft_close(void *i)
+int	ft_close(t_vars *mlx)
 {
-	(void)i;
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_image(mlx->mlx, mlx->img_0);
+	mlx_destroy_image(mlx->mlx, mlx->img_1);
+	mlx_destroy_image(mlx->mlx, mlx->img_c);
+	mlx_destroy_image(mlx->mlx, mlx->img_e);
+	mlx_destroy_image(mlx->mlx, mlx->img_el);
+	mlx_destroy_image(mlx->mlx, mlx->img_er);
+	mlx_destroy_image(mlx->mlx, mlx->img_m);
+	mlx_destroy_image(mlx->mlx, mlx->img_r);
+	mlx_destroy_image(mlx->mlx, mlx->img_me);
+	mlx_destroy_image(mlx->mlx, mlx->img_mel);
+	mlx_destroy_image(mlx->mlx, mlx->img_ml);
+	mlx_destroy_image(mlx->mlx, mlx->img_p);
+	mlx_destroy_image(mlx->mlx, mlx->img_pl);
 	exit(0);
 }
 

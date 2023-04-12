@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <libft.h>
-# include <ft_printf.h>
 # include <mlx.h>
 
 typedef struct s_count
@@ -41,6 +40,10 @@ typedef struct s_vars
 	void	*img_el;
 	void	*img_er;
 	void	*img_r;
+	void	*img_m;
+	void	*img_ml;
+	void	*img_me;
+	void	*img_mel;
 	int		size;
 	char	**split;
 	int		x;
@@ -49,6 +52,7 @@ typedef struct s_vars
 	int		j;
 	char	a;
 	int		c;
+	int		move;
 	int		count;
 }	t_vars;
 
@@ -75,7 +79,7 @@ void	right(t_vars *mlx);
 void	hook(int keycode, t_vars *mlx);
 int		key_hook(int keycode, t_vars *mlx);
 void	split_free(char **split);
-int		ft_close(void *i);
+int		ft_close(t_vars *mlx);
 void	coins(t_vars *mlx);
 void	map2(char **split, t_vars *mlx);
 void	err_mes(char *str, int condition);

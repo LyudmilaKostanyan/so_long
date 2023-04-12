@@ -69,15 +69,17 @@ void	hook(int keycode, t_vars *mlx)
 		right(mlx);
 		mlx->a = 'r';
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win,
+		mlx->img_1, 0, 0);
+	char *s = ft_itoa(mlx->count);
+	mlx_string_put(mlx->mlx, mlx->win, 0, 0, 0xFFFFFF, s);
+	free(s);
 }
 
 int	key_hook(int keycode, t_vars *mlx)
 {
 	if (keycode == 53)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
-	}
+		ft_close(mlx);
 	hook(keycode, mlx);
 	return (0);
 }

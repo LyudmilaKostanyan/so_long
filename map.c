@@ -32,7 +32,6 @@ void	up(t_vars *mlx, void *img, void *imge)
 	if (mlx->split[mlx->y - 1][mlx->x] != '1')
 	{
 		mlx->count++;
-		ft_printf("steps: %d\n", mlx->count);
 		if (mlx->split[mlx->y - 1][mlx->x] == 'R')
 			exit(0);
 		if (mlx->split[mlx->y - 1][mlx->x] != 'E')
@@ -61,7 +60,6 @@ void	down(t_vars *mlx, void *img, void *imge)
 	if (mlx->split[mlx->y + 1][mlx->x] != '1')
 	{
 		mlx->count++;
-		ft_printf("steps: %d\n", mlx->count);
 		if (mlx->split[mlx->y + 1][mlx->x] == 'R')
 			exit(0);
 		if (mlx->split[mlx->y + 1][mlx->x] != 'E')
@@ -90,7 +88,6 @@ void	left(t_vars *mlx)
 	if (mlx->split[mlx->y][mlx->x - 1] != '1')
 	{
 		mlx->count++;
-		ft_printf("steps: %d\n", mlx->count);
 		if (mlx->split[mlx->y][mlx->x - 1] == 'R')
 			exit(0);
 		if (mlx->split[mlx->y][mlx->x - 1] != 'E')
@@ -119,7 +116,6 @@ void	right(t_vars *mlx)
 	if (mlx->split[mlx->y][mlx->x + 1] != '1')
 	{
 		mlx->count++;
-		ft_printf("steps: %d\n", mlx->count);
 		if (mlx->split[mlx->y][mlx->x + 1] == 'R')
 			exit(0);
 		if (mlx->split[mlx->y][mlx->x + 1] != 'E')

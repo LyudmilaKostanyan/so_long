@@ -34,13 +34,11 @@ void	map2(char **split, t_vars *mlx)
 			mlx->img_c, mlx->x, mlx->y);
 }
 
-void	ft_images(t_vars *mlx, int len1, int len2)
+void	ft_images(t_vars *mlx)
 {
 	int	a;
 	int	b;
 
-	mlx->win = mlx_new_window(mlx->mlx, len2 * mlx->size,
-			len1 * mlx->size, "So_long!");
 	mlx->img_0 = mlx_xpm_file_to_image(mlx->mlx,
 			"./textures/zeros.xpm", &a, &b);
 	mlx->img_1 = mlx_xpm_file_to_image(mlx->mlx,
@@ -59,23 +57,115 @@ void	ft_images(t_vars *mlx, int len1, int len2)
 			"./textures/exit_right.xpm", &a, &b);
 	mlx->img_r = mlx_xpm_file_to_image(mlx->mlx,
 			"./textures/toxic.xpm", &a, &b);
+	mlx->img_m = mlx_xpm_file_to_image(mlx->mlx,
+			"./textures/move.xpm", &a, &b);
+	mlx->img_ml = mlx_xpm_file_to_image(mlx->mlx,
+			"./textures/move_l.xpm", &a, &b);
 }
 
 void	ft_init(t_vars *mlx, char **argv)
 {
 	int	len1;
 	int	len2;
+	int	a;
+	int	b;
 
 	mlx->size = 50;
 	mlx->split = area(argv[1], &mlx->c);
 	len1 = split_size(mlx->split);
 	len2 = ft_strlen(mlx->split[0]);
+	err_mes("Map size too large", len1 > 22 || len2 > 41);
 	mlx->mlx = mlx_init();
-	ft_images(mlx, len1, len2);
-	err_mes("Textures not found", !mlx->win || !mlx->mlx
-		|| !mlx->img_0 || !mlx->img_1 || !mlx->img_p
-		|| !mlx->img_pl || !mlx->img_c || !mlx->img_e
-		|| !mlx->img_el || !mlx->img_er || !mlx->img_r);
+	mlx->win = mlx_new_window(mlx->mlx, len2 * mlx->size,
+			len1 * mlx->size, "So_long!");
+	ft_images(mlx);
+	mlx->img_me = mlx_xpm_file_to_image(mlx->mlx,
+			"./textures/move_exit.xpm", &a, &b);
+	mlx->img_mel = mlx_xpm_file_to_image(mlx->mlx,
+			"./textures/move_exit_l.xpm", &a, &b);
+	err_mes("Textures not found", !mlx->win || !mlx->mlx || !mlx->img_me
+		|| !mlx->img_0 || !mlx->img_1 || !mlx->img_p || !mlx->img_mel
+		|| !mlx->img_pl || !mlx->img_c || !mlx->img_e || !mlx->img_el
+		|| !mlx->img_er || !mlx->img_r || !mlx->img_m || !mlx->img_ml);
+}
+
+void	f()
+{
+	if (mlx->a == 'l')
+	{
+		if (mlx->split[mlx->y][mlx->x] == 'E')
+			mlx_put_image_to_window(mlx->mlx, mlx->win,
+				mlx->img_mel, mlx->x * mlx->size, mlx->y * mlx->size);
+		else
+			mlx_put_image_to_window(mlx->mlx, mlx->win,
+				mlx->img_ml, mlx->x * mlx->size, mlx->y * mlx->size);
+	}
+	else
+	{
+		if (mlx->split[mlx->y][mlx->x] == 'E')
+			mlx_put_image_to_window(mlx->mlx, mlx->win,
+				mlx->img_me, mlx->x * mlx->size, mlx->y * mlx->size);
+		else
+		{
+			mlx_put_image_to_window(mlx->mlx, mlx->win,
+				mlx->img_m, mlx->x * mlx->size, mlx->y * mlx->size);
+		}
+	}
+}
+
+int	for_move(t_vars *mlx)
+{
+	static int	i;
+
+	if (i == 3500)
+	{
+		if (!mlx->move)
+		{
+			// if (mlx->a == 'l')
+			// {
+			// 	if (mlx->split[mlx->y][mlx->x] == 'E')
+			// 		mlx_put_image_to_window(mlx->mlx, mlx->win,
+			// 			mlx->img_mel, mlx->x * mlx->size, mlx->y * mlx->size);
+			// 	else
+			// 		mlx_put_image_to_window(mlx->mlx, mlx->win,
+			// 			mlx->img_ml, mlx->x * mlx->size, mlx->y * mlx->size);
+			// }
+			// else
+			// {
+			// 	if (mlx->split[mlx->y][mlx->x] == 'E')
+			// 		mlx_put_image_to_window(mlx->mlx, mlx->win,
+			// 			mlx->img_me, mlx->x * mlx->size, mlx->y * mlx->size);
+			// 	else
+			// 	{
+			// 		mlx_put_image_to_window(mlx->mlx, mlx->win,
+			// 			mlx->img_m, mlx->x * mlx->size, mlx->y * mlx->size);
+			// 	}
+			// }
+			mlx->move = 1;
+		}
+		else
+		{
+			if (mlx->a == 'l')
+				if (mlx->split[mlx->y][mlx->x] == 'E')
+					mlx_put_image_to_window(mlx->mlx, mlx->win,
+						mlx->img_el, mlx->x * mlx->size, mlx->y * mlx->size);
+				else
+					mlx_put_image_to_window(mlx->mlx, mlx->win,
+						mlx->img_pl, mlx->x * mlx->size, mlx->y * mlx->size);
+			else
+				if (mlx->split[mlx->y][mlx->x] == 'E')
+					mlx_put_image_to_window(mlx->mlx, mlx->win,
+						mlx->img_er, mlx->x * mlx->size, mlx->y * mlx->size);
+				else
+					mlx_put_image_to_window(mlx->mlx, mlx->win,
+						mlx->img_p, mlx->x * mlx->size, mlx->y * mlx->size);
+			mlx->move = 0;
+		}
+		i = 0;
+	}
+	else
+		i++;
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -93,8 +183,9 @@ int	main(int argc, char **argv)
 	map(mlx.split, &mlx);
 	find_p(&mlx);
 	mlx.count = 0;
+	mlx.move = 0;
 	mlx_hook(mlx.win, 2, 0, &key_hook, &mlx);
-	mlx_loop_hook(mlx.mlx, &key_hook, &mlx);
+	mlx_loop_hook(mlx.mlx, &for_move, &mlx);
 	mlx_hook(mlx.win, 17, 1L << 17, ft_close, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
