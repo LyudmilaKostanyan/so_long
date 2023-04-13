@@ -14,7 +14,7 @@ FILES = parse.c\
 
 OBJS = $(FILES:.c=.o)
 
-%.o: %.c
+%.o: %.c Makefile
 	$(CC) $(CFLAGS) $(IFLAGS) $< -o $@
 
 all: lib $(NAME)
