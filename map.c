@@ -109,6 +109,7 @@ void	left(t_vars *mlx)
 		mlx->x -= 1;
 		coins(mlx);
 	}
+	mlx->a = 'l';
 }
 
 void	right(t_vars *mlx)
@@ -137,4 +138,5 @@ void	right(t_vars *mlx)
 		mlx->x += 1;
 		coins(mlx);
 	}
+	mlx->a = 'r';
 }

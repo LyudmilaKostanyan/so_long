@@ -83,5 +83,8 @@ int		ft_close(t_vars *mlx);
 void	coins(t_vars *mlx);
 void	map2(char **split, t_vars *mlx);
 void	err_mes(char *str, int condition);
+int		for_move(t_vars *mlx);
+void	for_move_first(t_vars *mlx);
+void	for_move_second(t_vars *mlx);
 
 #endif

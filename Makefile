@@ -10,6 +10,7 @@ FILES = parse.c\
 		main.c\
 		hooks.c\
 		map.c\
+		bonus.c
 
 OBJS = $(FILES:.c=.o)
 

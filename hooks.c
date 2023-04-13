@@ -45,6 +45,8 @@ void	find_p(t_vars *mlx)
 
 void	hook(int keycode, t_vars *mlx)
 {
+	char	*s;
+
 	if (keycode == 13 || keycode == 126)
 	{
 		if (mlx->a == 'l')
@@ -60,18 +62,12 @@ void	hook(int keycode, t_vars *mlx)
 			down(mlx, mlx->img_p, mlx->img_er);
 	}
 	if (keycode == 0 || keycode == 123)
-	{
 		left(mlx);
-		mlx->a = 'l';
-	}
 	if (keycode == 2 || keycode == 124)
-	{
 		right(mlx);
-		mlx->a = 'r';
-	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win,
 		mlx->img_1, 0, 0);
-	char *s = ft_itoa(mlx->count);
+	s = ft_itoa(mlx->count);
 	mlx_string_put(mlx->mlx, mlx->win, 0, 0, 0xFFFFFF, s);
 	free(s);
 }
