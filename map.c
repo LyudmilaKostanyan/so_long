@@ -25,6 +25,7 @@ void	map(char **split, t_vars *mlx)
 		}
 		mlx->y += mlx->size;
 	}
+	mlx_string_put(mlx->mlx, mlx->win, 0, 0, 0xFFFFFF, "0");
 }
 
 void	up(t_vars *mlx, void *img, void *imge)
@@ -33,14 +34,14 @@ void	up(t_vars *mlx, void *img, void *imge)
 	{
 		mlx->count++;
 		if (mlx->split[mlx->y - 1][mlx->x] == 'R')
-			exit(0);
+			ft_close(mlx);
 		if (mlx->split[mlx->y - 1][mlx->x] != 'E')
 			mlx_put_image_to_window(mlx->mlx, mlx->win, img,
 				mlx->x * mlx->size, (mlx->y - 1) * mlx->size);
 		else
 		{
 			if (mlx->c == 0)
-				exit(0);
+				ft_close(mlx);
 			mlx_put_image_to_window(mlx->mlx, mlx->win, imge,
 				mlx->x * mlx->size, (mlx->y - 1) * mlx->size);
 		}
@@ -61,14 +62,14 @@ void	down(t_vars *mlx, void *img, void *imge)
 	{
 		mlx->count++;
 		if (mlx->split[mlx->y + 1][mlx->x] == 'R')
-			exit(0);
+			ft_close(mlx);
 		if (mlx->split[mlx->y + 1][mlx->x] != 'E')
 			mlx_put_image_to_window(mlx->mlx, mlx->win, img,
 				mlx->x * mlx->size, (mlx->y + 1) * mlx->size);
 		else
 		{
 			if (mlx->c == 0)
-				exit(0);
+				ft_close(mlx);
 			mlx_put_image_to_window(mlx->mlx, mlx->win, imge,
 				mlx->x * mlx->size, (mlx->y + 1) * mlx->size);
 		}
@@ -89,14 +90,14 @@ void	left(t_vars *mlx)
 	{
 		mlx->count++;
 		if (mlx->split[mlx->y][mlx->x - 1] == 'R')
-			exit(0);
+			ft_close(mlx);
 		if (mlx->split[mlx->y][mlx->x - 1] != 'E')
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img_pl,
 				(mlx->x - 1) * mlx->size, mlx->y * mlx->size);
 		else
 		{
 			if (mlx->c == 0)
-				exit(0);
+				ft_close(mlx);
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img_el,
 				(mlx->x - 1) * mlx->size, mlx->y * mlx->size);
 		}
@@ -118,14 +119,14 @@ void	right(t_vars *mlx)
 	{
 		mlx->count++;
 		if (mlx->split[mlx->y][mlx->x + 1] == 'R')
-			exit(0);
+			ft_close(mlx);
 		if (mlx->split[mlx->y][mlx->x + 1] != 'E')
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img_p,
 				(mlx->x + 1) * mlx->size, mlx->y * mlx->size);
 		else
 		{
 			if (mlx->c == 0)
-				exit(0);
+				ft_close(mlx);
 			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img_er,
 				(mlx->x + 1) * mlx->size, mlx->y * mlx->size);
 		}

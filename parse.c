@@ -73,7 +73,7 @@ char	**parse(char *file, int count, int *c)
 
 	s = ft_open(file, count);
 	split = ft_split(s, '\n');
-	err_mes("Malloc error", split == NULL);
+	err_mes("Malloc error", split == NULL || !*split);
 	parsing_rectangular(split);
 	parsing_borders(split);
 	*c = parsing_pce(s);

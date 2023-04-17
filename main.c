@@ -76,6 +76,7 @@ void	ft_init(t_vars *mlx, char **argv)
 	len2 = ft_strlen(mlx->split[0]);
 	err_mes("Map size too large", len1 > 22 || len2 > 41);
 	mlx->mlx = mlx_init();
+	err_mes("Mlx not found", !mlx->mlx);
 	mlx->win = mlx_new_window(mlx->mlx, len2 * mlx->size,
 			len1 * mlx->size, "So_long!");
 	ft_images(mlx);
@@ -83,7 +84,7 @@ void	ft_init(t_vars *mlx, char **argv)
 			"./textures/move_exit.xpm", &a, &b);
 	mlx->img_mel = mlx_xpm_file_to_image(mlx->mlx,
 			"./textures/move_exit_l.xpm", &a, &b);
-	err_mes("Textures not found", !mlx->win || !mlx->mlx || !mlx->img_me
+	err_mes("Textures not found", !mlx->win || !mlx->img_me
 		|| !mlx->img_0 || !mlx->img_1 || !mlx->img_p || !mlx->img_mel
 		|| !mlx->img_pl || !mlx->img_c || !mlx->img_e || !mlx->img_el
 		|| !mlx->img_er || !mlx->img_r || !mlx->img_m || !mlx->img_ml);
