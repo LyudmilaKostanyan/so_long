@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 CFLAGS = -c -Wall -Wextra -Werror
-MLX = -lmlx -L /usr/local/include -framework AppKit -framework OpenGL
+MLX = -I./minilibx-linux -L./minilibx-linux -lmlx -lX11 -lXext -lbsd
 LFLAGS = -L./libft -lft
 IFLAGS = -I./libft
 FILES = parse.c\

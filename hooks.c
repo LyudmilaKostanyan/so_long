@@ -47,23 +47,23 @@ void	hook(int keycode, t_vars *mlx)
 {
 	char	*s;
 
-	if (keycode == 13 || keycode == 126)
+	if (keycode == 119 || keycode == 65362)
 	{
 		if (mlx->a == 'l')
 			up(mlx, mlx->img_pl, mlx->img_el);
 		else
 			up(mlx, mlx->img_p, mlx->img_er);
 	}
-	if (keycode == 1 || keycode == 125)
+	if (keycode == 115 || keycode == 65364)
 	{
 		if (mlx->a == 'l')
 			down(mlx, mlx->img_pl, mlx->img_el);
 		else
 			down(mlx, mlx->img_p, mlx->img_er);
 	}
-	if (keycode == 0 || keycode == 123)
+	if (keycode == 97 || keycode == 65361)
 		left(mlx);
-	if (keycode == 2 || keycode == 124)
+	if (keycode == 100 || keycode == 65363)
 		right(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win,
 		mlx->img_1, 0, 0);
@@ -74,7 +74,7 @@ void	hook(int keycode, t_vars *mlx)
 
 int	key_hook(int keycode, t_vars *mlx)
 {
-	if (keycode == 53)
+	if (keycode == 65307)
 		ft_close(mlx);
 	hook(keycode, mlx);
 	return (0);

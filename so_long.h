@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <libft.h>
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
+# include <stdint.h>
 
 typedef struct s_count
 {

@@ -64,7 +64,7 @@ int	for_move(t_vars *mlx)
 {
 	static int	i;
 
-	if (i == 3000)
+	if (i == 7000)
 	{
 		if (!mlx->move)
 			for_move_first(mlx);

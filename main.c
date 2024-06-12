@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	find_p(&mlx);
 	mlx.count = 0;
 	mlx.move = 0;
-	mlx_hook(mlx.win, 2, 0, &key_hook, &mlx);
+	mlx_hook(mlx.win, 2, 1L<<0, &key_hook, &mlx);
 	mlx_loop_hook(mlx.mlx, &for_move, &mlx);
 	mlx_hook(mlx.win, 17, 1L << 17, ft_close, &mlx);
 	mlx_loop(mlx.mlx);
