@@ -2,13 +2,16 @@
 
 The So Long project at 42 is a beginner-level game development project that helps students learn the basics of graphics programming and game mechanics using the MiniLibX library. Here's an overview of the project:
 
+https://github.com/LyudmilaKostanyan/so_long/assets/119743330/23dfdf9e-f26e-473b-a1a9-c91d117473c4
+
 ## Usage
 
 Compile the code using the provided Makefile. Run the executable, providing the path to a valid map file.
 
 Example usage:
+
 ```
-./so_long maps/map.ber
+./so_long maps/map_1.ber
 ```
 
 ## Objectives
