@@ -1,7 +1,6 @@
 NAME = so_long
 CC = cc
 CFLAGS = -c -Wall -Wextra -Werror
-MLX = -I./minilibx-linux -L./minilibx-linux -lmlx -lX11 -lXext -lbsd
 LFLAGS = -L./libft -lft
 IFLAGS = -I./libft
 FILES = parse.c\
@@ -12,6 +11,16 @@ FILES = parse.c\
 		map.c\
 		bonus.c
 
+ifeq ($(shell uname -s), Darwin)
+	MINILIBX_PATH = minilibx-opengl
+	MLX_HEADER = -I$(MINILIBX_PATH)
+	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+else
+	MINILIBX_PATH = minilibx-linux
+	MLX_HEADER = -I$(MINILIBX_PATH)
+	MLX_FLAGS = -L./$(MINILIBX_PATH) -lmlx -lm -lXext -lX11
+endif
+
 OBJS = $(FILES:.c=.o)
 
 %.o: %.c Makefile
@@ -20,7 +29,7 @@ OBJS = $(FILES:.c=.o)
 all: lib $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LFLAGS) $(MLX) -o $(NAME)
+	$(CC) $(OBJS) $(LFLAGS) $(MLX_FLAGS) $(MLX_HEADER) -o $(NAME)
 
 lib:
 	cd libft && make
