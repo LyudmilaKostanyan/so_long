@@ -47,8 +47,3 @@ Example usage:
 - **Graphics Programming**: Understand the basics of rendering graphics and handling user input using MiniLibX.
 - **Game Loop**: Implement a simple game loop that updates the game state and renders the game continuously.
 - **File Parsing**: Read and interpret a map file to generate the game world.
-
-## Additional Features (Optional)
-- **Animations**: Add animations for the player and other game elements.
-- **Sound Effects**: Incorporate sound effects for actions like collecting items or reaching the exit.
-- **Enhanced Gameplay**: Introduce more complex game mechanics or additional levels.
