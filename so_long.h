@@ -18,20 +18,22 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <libft.h>
-# include "minilibx-linux/mlx.h"
 # include <stdint.h>
 
 #if defined(__linux__)
+	# include "minilibx-linux/mlx.h"
 	#define A 97
 	#define D 100
 	#define W 119
 	#define S 115
-	#define LEFT 97
-	#define RIGHT 100
-	#define UP 119
-	#define DOWN 115
+	#define LEFT 65361
+	#define RIGHT 65363
+	#define UP 65362
+	#define DOWN 65364
+	#define ESC 65307
 	#define SPEED 7000
 #elif defined(__APPLE__) && defined(__MACH__)
+	# include "minilibx_opengl/mlx.h"
 	#define A 0
 	#define D 2
 	#define W 13
@@ -40,6 +42,7 @@
 	#define RIGHT 124
 	#define UP 126
 	#define DOWN 125
+	#define ESC 53
 	#define SPEED 3000
 // #elif defined(_WIN32) || defined(_WIN64)
 	// #define A 0

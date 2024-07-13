@@ -74,7 +74,7 @@ void	hook(int keycode, t_vars *mlx)
 
 int	key_hook(int keycode, t_vars *mlx)
 {
-	if (keycode == 65307)
+	if (keycode == ESC)
 		ft_close(mlx);
 	hook(keycode, mlx);
 	return (0);

@@ -33,6 +33,7 @@ $(NAME): $(OBJS)
 
 lib:
 	cd libft && make
+	cd $(MINILIBX_PATH) && make
 
 clean:
 	rm -f ./*.o libft/*.o
